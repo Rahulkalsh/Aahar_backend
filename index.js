@@ -1,3 +1,7 @@
+const dotenv = require('dotenv');
+dotenv.config();
+const express = require('express')
+const app = express()
 
 global.foodData = require('./db')(function call(err, data, CatData) {
   if(err) console.log(err);
@@ -5,9 +9,7 @@ global.foodData = require('./db')(function call(err, data, CatData) {
   global.foodCategory = CatData;
 })
 
-const express = require('express')
-const app = express()
-const port = 5000
+const port = process.env.PORT || 5000;
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "https://aahar-frontend.vercel.app");
   res.header(
